@@ -41,3 +41,8 @@ Manual steps - after deploy:
   System.schedule('CountryLayerServiceImmediateRun', cron, new CountryLayerScheduler());
 
   and verify if active in ScheduledJobs in setup.
+
+5. Useful query for testing:
+  select id, LastModifiedDate, CreatedDate,  alpha2Code__c, alpha3Code__c, Capital__c, Region__c, Name from Country2__c order by lastmodifieddate desc
+
+  
