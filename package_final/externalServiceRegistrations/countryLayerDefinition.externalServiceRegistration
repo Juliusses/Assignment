@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalServiceRegistration xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>countryLayerDefinition</label>
+    <namedCredentialReference>countrylayerService</namedCredentialReference>
+    <operations>
+        <active>true</active>
+        <name>getcountry</name>
+    </operations>
+    <registrationProviderType>Custom</registrationProviderType>
+    <schema>openapi: 3.0.1
+info:
+  title: Country Information API
+  description: A service that provides country information for use in Salesforce, where `alpha3Code` serves as the external ID.
+  version: 1.0.0
+servers:
+    description: Country API Server
+paths:
+  /country:
+    get:
+      summary: Country Information
+      description: Country Information object definition including its name, codes, capital, region, and regional blocks.
+      parameters:
+        - name: alpha3Code
+          in: query
+          required: true
+          schema:
+            type: string
+            description: The ISO 3166-1 alpha-3 code for the country.
+      responses:
+        &apos;200&apos;:
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alpha3Code:
+                    type: string
+                  name:
+                    type: string
+                  alpha2Code:
+                    type: string
+                  capital:
+                    type: string
+                  region:
+                    type: string
+                  regionalBlocs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        acronym:
+                          type: string
+                        name:
+                          type: string
+                  population:
+                    type: integer
+                  area:
+                    type: number
+                  timezones:
+                    type: array
+                    items:
+                      type: string
+                  borders:
+                    type: array
+                    items:
+                      type: string
+                  currencies:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                  languages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        iso639_1:
+                          type: string
+                        name:
+                          type: string
+                        nativeName:
+                          type: string
+                  flag:
+                    type: string
+        &apos;400&apos;:
+          description: Invalid request
+        &apos;404&apos;:
+          description: Country not found
+        &apos;500&apos;:
+          description: Internal server error
+</schema>
+    <schemaType>OpenApi3</schemaType>
+    <serviceBinding>{&quot;host&quot;:&quot;&quot;,&quot;basePath&quot;:&quot;/&quot;,&quot;allowedSchemes&quot;:[],&quot;requestMediaTypes&quot;:[],&quot;responseMediaTypes&quot;:[],&quot;compatibleMediaTypes&quot;:{}}</serviceBinding>
+    <status>Complete</status>
+    <systemVersion>5</systemVersion>
+</ExternalServiceRegistration>
